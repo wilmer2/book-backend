@@ -23,7 +23,7 @@ class ProxyApiLoginAction extends Action
             'grant_type'    => $data->grant_type ?? 'password',
             'client_id'     => $data->client_id,
             'client_secret' => $data->client_password,
-            // 'username'      => $data->email,
+            'username'      => $data->email,
             'password'      => $data->password,
             'scope'         => $data->scope ?? '',
         ];
