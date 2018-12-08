@@ -18,7 +18,7 @@ class UpdateUserRequest extends Request
      * @var  array
      */
     protected $access = [
-        'permissions' => 'update-users',
+        'permissions' => '',
         'roles'       => '',
     ];
 
@@ -47,7 +47,7 @@ class UpdateUserRequest extends Request
     public function rules()
     {
         return [
-            'email'    => 'email|unique:users,email',
+            'email'    => 'email|unique:users,email,'.$this->id,
             'id'       => 'required|exists:users,id',
             'password' => 'min:6|max:40',
             'name'     => 'min:2|max:50',
@@ -63,7 +63,7 @@ class UpdateUserRequest extends Request
         // or the user is updating his own object (is the owner).
 
         return $this->check([
-            'hasAccess|isOwner',
+            'isOwner',
         ]);
     }
 }
