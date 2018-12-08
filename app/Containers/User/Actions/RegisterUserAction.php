@@ -9,10 +9,10 @@ use App\Containers\User\Models\User;
 use App\Containers\User\Notifications\UserRegisteredNotification;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Transporters\DataTransporter;
-use Illuminate\Contracts\Bus\Dispatcher;
+//use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
+//use Illuminate\Support\Facades\Mail;
+//use Illuminate\Support\Facades\Notification;
 
 /**
  * Class RegisterUserAction.
@@ -34,16 +34,14 @@ class RegisterUserAction extends Action
             $isClient = true,
             $data->email,
             $data->password,
-            $data->name,
-            $data->gender,
-            $data->birth
+            $data->name
         ]);
 
-        Mail::send(new UserRegisteredMail($user));
+        //Mail::send(new UserRegisteredMail($user));
 
-        Notification::send($user, new UserRegisteredNotification($user));
+        //Notification::send($user, new UserRegisteredNotification($user));
 
-        App::make(Dispatcher::class)->dispatch(New UserRegisteredEvent($user));
+        //App::make(Dispatcher::class)->dispatch(New UserRegisteredEvent($user));
 
         return $user;
     }

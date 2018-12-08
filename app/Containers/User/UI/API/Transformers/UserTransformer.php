@@ -56,6 +56,7 @@ class UserTransformer extends Transformer
             'updated_at'           => $user->updated_at,
             'readable_created_at'  => $user->created_at->diffForHumans(),
             'readable_updated_at'  => $user->updated_at->diffForHumans(),
+            'active'               => $user->active,
         ];
 
         $response = $this->ifAdmin([
