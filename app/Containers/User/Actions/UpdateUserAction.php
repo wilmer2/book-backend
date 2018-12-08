@@ -33,6 +33,7 @@ class UpdateUserAction extends Action
             'social_expires_in'    => $data->expiresIn,
             'social_refresh_token' => $data->refreshToken,
             'social_token_secret'  => $data->tokenSecret,
+            'active'               => $data->active,
         ];
 
         // remove null values and their keys
