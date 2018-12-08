@@ -7,7 +7,12 @@ use App\Ship\Parents\Models\Model;
 class Book extends Model
 {
     protected $fillable = [
-
+      'name',
+      'description',
+      'copyright',
+      'image_url',
+      'user_id',
+      'category_id'
     ];
 
     protected $attributes = [
