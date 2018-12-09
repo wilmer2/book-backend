@@ -33,7 +33,8 @@ class CreateBookRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+        'category_id',
+        'user_id',
     ];
 
     /**
@@ -52,8 +53,11 @@ class CreateBookRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
-            // '{user-input}' => 'required|max:255',
+            'name' => 'required',
+            'description' => 'required',
+            'copyright' => 'required',
+            'category_id' => 'required|exists:categories,id',
+            'user_id' => 'required|exists:users,id',
         ];
     }
 
