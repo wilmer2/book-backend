@@ -12,7 +12,7 @@ class Book extends Model
       'copyright',
       'image_url',
       'user_id',
-      'category_id'
+      'category_id',
     ];
 
     protected $attributes = [
