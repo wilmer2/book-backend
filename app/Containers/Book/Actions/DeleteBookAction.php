@@ -10,6 +10,12 @@ class DeleteBookAction extends Action
 {
     public function run(Request $request)
     {
-        return Apiato::call('Book@DeleteBookTask', [$request->id]);
+        $book = Apiato::call('Book@FindBookByIdTask', [$request->id]);
+        $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
+        
+        Apiato::call('Book@BookBelongToUserTask', [$user, $book]);
+        Apiato::call('Files@DeleteFileTask', [$book->image_url]);
+
+        return Apiato::call('Book@DeleteBookTask', [$book->id]);
     }
 }
