@@ -33,7 +33,8 @@ class UpdateBookRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+        'id',
+        'category_id',
     ];
 
     /**
@@ -43,7 +44,7 @@ class UpdateBookRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+        'id',
     ];
 
     /**
@@ -52,8 +53,11 @@ class UpdateBookRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
-            // '{user-input}' => 'required|max:255',
+            'id' => 'required|exists:books,id',
+            'name' => 'required',
+            'description' => 'required',
+            'copyright' => 'required',
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 

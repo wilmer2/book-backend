@@ -20,7 +20,7 @@
  */
 
 /** @var Route $router */
-$router->patch('books/{id}', [
+$router->put('books/{id}', [
     'as' => 'api_book_update_book',
     'uses'  => 'Controller@updateBook',
     'middleware' => [

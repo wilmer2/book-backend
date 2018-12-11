@@ -9,12 +9,32 @@ use Apiato\Core\Foundation\Facades\Apiato;
 class UpdateBookAction extends Action
 {
     public function run(Request $request)
-    {
-        $data = $request->sanitizeInput([
-            // add your request data here
+    {   
+        $bookEntity = Apiato::call('Book@FindBookByIdTask', [$request->id]);
+        $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
+        $folder = \Config::get('book-container.folder');
+
+        Apiato::call('Book@BookBelongToUserTask', [$user, $bookEntity]);
+
+        $imageUrl = Apiato::call('Files@CreateFileSubAction', [
+          $request, 
+          $folder, 
+          $bookEntity->image_url
         ]);
 
-        $book = Apiato::call('Book@UpdateBookTask', [$request->id, $data]);
+        $data = $request->merge(['image_url' => $imageUrl])
+          ->sanitizeInput([
+            'name',
+            'description',
+            'copyright',
+            'user_id',
+            'category_id',
+            'image_url'
+        ]);
+
+        $bookData = array_filter($data);
+
+        $book = Apiato::call('Book@UpdateBookTask', [$request->id, $bookData]);
 
         return $book;
     }
