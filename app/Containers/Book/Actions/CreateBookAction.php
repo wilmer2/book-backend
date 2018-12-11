@@ -11,8 +11,8 @@ class CreateBookAction extends Action
 {
     public function run(Request $request)
     {
-        $folder = 'books';
-        $imageUrl = Apiato::call('Files@StoreFileTask', [$request->file('file'), $folder]);
+        $folder = \Config::get('book-container.folder');
+        $imageUrl = Apiato::call('Files@CreateFileSubAction', [$request, $folder]);
 
         $data = $request->merge(['image_url' => $imageUrl])
           ->sanitizeInput([
