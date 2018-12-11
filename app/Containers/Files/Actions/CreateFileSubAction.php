@@ -6,7 +6,7 @@ use App\Ship\Parents\Actions\SubAction;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Parents\Requests\Request;
 
-class CreateFileAction extends SubAction
+class CreateFileSubAction extends SubAction
 {
     public function run(
       Request $request, 
