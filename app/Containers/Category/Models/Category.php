@@ -3,6 +3,7 @@
 namespace App\Containers\Category\Models;
 
 use App\Ship\Parents\Models\Model;
+use App\Containers\Book\Models\Book;
 
 class Category extends Model
 {
@@ -27,6 +28,10 @@ class Category extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function books() {
+      return $this->hasMany(Book::class);
+    }
 
     /**
      * A resource key to be used by the the JSON API Serializer responses.

@@ -4,7 +4,8 @@ namespace App\Containers\User\Models;
 
 use App\Containers\Authorization\Traits\AuthorizationTrait;
 use App\Containers\Payment\Contracts\ChargeableInterface;
-use App\Containers\Payment\Models\PaymentAccount;
+use App\Containers\Book\Models\Book;
+
 use App\Containers\Payment\Traits\ChargeableTrait;
 use App\Ship\Parents\Models\UserModel;
 
@@ -80,9 +81,9 @@ class User extends UserModel implements ChargeableInterface
         'remember_token',
     ];
 
-    public function paymentAccounts()
+    public function books()
     {
-        return $this->hasMany(PaymentAccount::class);
+        return $this->hasMany(Book::class);
     }
 
 }
