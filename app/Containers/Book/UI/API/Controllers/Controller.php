@@ -7,6 +7,7 @@ use App\Containers\Book\UI\API\Requests\DeleteBookRequest;
 use App\Containers\Book\UI\API\Requests\GetAllBooksRequest;
 use App\Containers\Book\UI\API\Requests\FindBookByIdRequest;
 use App\Containers\Book\UI\API\Requests\UpdateBookRequest;
+use App\Containers\Book\UI\API\Requests\AddViewerRequest;
 use App\Containers\Book\UI\API\Transformers\BookTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use Apiato\Core\Foundation\Facades\Apiato;
@@ -58,6 +59,14 @@ class Controller extends ApiController
     public function updateBook(UpdateBookRequest $request)
     {
         $book = Apiato::call('Book@UpdateBookAction', [$request]);
+
+        return $this->transform($book, BookTransformer::class);
+    }
+
+    
+    public function addViewerBook(AddViewerRequest $request)
+    {
+        $book = Apiato::call('Book@AddViewerAction', [$request]);
 
         return $this->transform($book, BookTransformer::class);
     }

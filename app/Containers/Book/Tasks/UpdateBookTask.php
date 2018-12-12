@@ -18,7 +18,7 @@ class UpdateBookTask extends Task
     }
 
     public function run($id, array $data)
-    {
+    {   
         try {
             return $this->repository->update($data, $id);
         }
