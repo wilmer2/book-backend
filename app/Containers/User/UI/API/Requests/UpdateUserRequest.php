@@ -63,7 +63,7 @@ class UpdateUserRequest extends Request
         // or the user is updating his own object (is the owner).
 
         return $this->check([
-            'isOwner',
+            'hasAccess|isOwner',
         ]);
     }
 }
