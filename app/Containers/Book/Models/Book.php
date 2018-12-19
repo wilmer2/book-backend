@@ -3,9 +3,9 @@
 namespace App\Containers\Book\Models;
 
 use App\Ship\Parents\Models\Model;
-use App\Containers\User\Model\User;
-use App\Containers\Category\Model\Category;
-use App\Containers\Viewer\Model\Viewer;
+use App\Containers\User\Models\User;
+use App\Containers\Category\Models\Category;
+use App\Containers\Viewer\Models\Viewer;
 
 
 class Book extends Model
@@ -28,13 +28,17 @@ class Book extends Model
     ];
 
     protected $casts = [
-
+      'views' => 'int',
     ];
 
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+
+    public function getFileUrlAttribute() {
+      return $this->image_url ? \Storage::url($this->image_url) : null;
+    }
 
     public function user() {
       return $this->belongsTo(User::class);
