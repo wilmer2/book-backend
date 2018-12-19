@@ -23,7 +23,4 @@
 $router->get('categories', [
     'as' => 'api_category_get_all_categories',
     'uses'  => 'Controller@getAllCategories',
-    'middleware' => [
-      'auth:api',
-    ],
 ]);

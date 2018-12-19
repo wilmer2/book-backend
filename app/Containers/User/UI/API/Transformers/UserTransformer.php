@@ -5,6 +5,8 @@ namespace App\Containers\User\UI\API\Transformers;
 use App\Containers\Authorization\UI\API\Transformers\RoleTransformer;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Transformers\Transformer;
+use App\Containers\Book\UI\API\Transformers\BookTransformer;
+
 
 /**
  * Class UserTransformer.
@@ -18,14 +20,13 @@ class UserTransformer extends Transformer
      * @var  array
      */
     protected $availableIncludes = [
-        'roles',
+        //'roles',
     ];
 
     /**
      * @var  array
      */
     protected $defaultIncludes = [
-
     ];
 
     /**
@@ -40,11 +41,6 @@ class UserTransformer extends Transformer
             'id'                   => $user->getHashedKey(),
             'name'                 => $user->name,
             'email'                => $user->email,
-            'confirmed'            => $user->confirmed,
-            'nickname'             => $user->nickname,
-            'gender'               => $user->gender,
-            'birth'                => $user->birth,
-
             'social_auth_provider' => $user->social_provider,
             'social_id'            => $user->social_id,
             'social_avatar'        => [
@@ -56,7 +52,6 @@ class UserTransformer extends Transformer
             'updated_at'           => $user->updated_at,
             'readable_created_at'  => $user->created_at->diffForHumans(),
             'readable_updated_at'  => $user->updated_at->diffForHumans(),
-            'active'               => $user->active,
         ];
 
         $response = $this->ifAdmin([
@@ -67,9 +62,9 @@ class UserTransformer extends Transformer
         return $response;
     }
 
-    public function includeRoles(User $user)
+    /*public function includeRoles(User $user)
     {
         return $this->collection($user->roles, new RoleTransformer());
-    }
+    }*/
 
 }

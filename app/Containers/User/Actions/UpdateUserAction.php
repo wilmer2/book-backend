@@ -40,7 +40,9 @@ class UpdateUserAction extends Action
         $userData = array_filter($userData);
 
         $user = Apiato::call('User@UpdateUserTask', [$userData, $data->id]);
-
+        
+        Apiato::call('User@SyncPreferencesTask', [$user ,$data->categories_ids]);
+        
         return $user;
     }
 }

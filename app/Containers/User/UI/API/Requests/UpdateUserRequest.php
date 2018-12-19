@@ -29,6 +29,7 @@ class UpdateUserRequest extends Request
      */
     protected $decode = [
         'id',
+        'categories_ids.*'
     ];
 
     /**
@@ -51,6 +52,8 @@ class UpdateUserRequest extends Request
             'id'       => 'required|exists:users,id',
             'password' => 'min:6|max:40',
             'name'     => 'min:2|max:50',
+            'categories_ids' => 'required',
+            'categories_ids.*' => 'exists:categories,id',
         ];
     }
 
@@ -63,7 +66,7 @@ class UpdateUserRequest extends Request
         // or the user is updating his own object (is the owner).
 
         return $this->check([
-            'isOwner',
+            'hasAccess|isOwner',
         ]);
     }
 }

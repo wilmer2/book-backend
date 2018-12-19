@@ -28,7 +28,7 @@ class RegisterUserRequest extends Request
      * @var  array
      */
     protected $decode = [
-
+        'categories_ids.*'
     ];
 
     /**
@@ -50,6 +50,8 @@ class RegisterUserRequest extends Request
             'email'    => 'required|email|max:40|unique:users,email',
             'password' => 'required|min:6|max:30',
             'name'     => 'required|min:2|max:50',
+            'categories_ids' => 'required',
+            'categories_ids.*' => 'exists:categories,id',
         ];
     }
 
