@@ -33,7 +33,7 @@ class FindBookByIdRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+        'id',
     ];
 
     /**
@@ -43,7 +43,7 @@ class FindBookByIdRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+        'id',
     ];
 
     /**
@@ -62,8 +62,6 @@ class FindBookByIdRequest extends Request
      */
     public function authorize()
     {
-        return $this->check([
-            'hasAccess',
-        ]);
+        return true;
     }
 }
