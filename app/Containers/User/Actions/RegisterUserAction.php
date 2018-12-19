@@ -37,11 +37,7 @@ class RegisterUserAction extends Action
             $data->name
         ]);
 
-        //Mail::send(new UserRegisteredMail($user));
-
-        //Notification::send($user, new UserRegisteredNotification($user));
-
-        //App::make(Dispatcher::class)->dispatch(New UserRegisteredEvent($user));
+        Apiato::call('User@SyncPreferencesTask', [$user ,$data->categories_ids]);
 
         return $user;
     }
