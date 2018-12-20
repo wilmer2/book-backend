@@ -57,7 +57,8 @@ class Book extends Model
         return $this->hasMany(Viewer::class);
     }
 
-    public function pages() {
+    public function pages() 
+    {
         return $this->hasMany(Page::class);
     }
 
