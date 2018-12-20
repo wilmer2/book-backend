@@ -5,6 +5,7 @@ namespace App\Containers\Book\Models;
 use App\Ship\Parents\Models\Model;
 use App\Containers\User\Models\User;
 use App\Containers\Category\Models\Category;
+use App\Containers\Page\Models\Page;
 use App\Containers\Viewer\Models\Viewer;
 
 
@@ -36,20 +37,27 @@ class Book extends Model
         'updated_at',
     ];
 
-    public function getFileUrlAttribute() {
-      return $this->image_url ? \Storage::url($this->image_url) : null;
+    public function getFileUrlAttribute() 
+    {
+        return $this->image_url ? \Storage::url($this->image_url) : null;
     }
 
-    public function user() {
-      return $this->belongsTo(User::class);
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
     }
 
-    public function category() {
-      return $this->belongsTo(Category::class);
+    public function category() 
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function viewers() {
-      return $this->hasMany(Viewer::class);
+        return $this->hasMany(Viewer::class);
+    }
+
+    public function pages() {
+        return $this->hasMany(Page::class);
     }
 
     /**
