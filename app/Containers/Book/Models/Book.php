@@ -52,7 +52,8 @@ class Book extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function viewers() {
+    public function viewers() 
+    {
         return $this->hasMany(Viewer::class);
     }
 
