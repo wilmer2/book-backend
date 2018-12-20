@@ -5,9 +5,9 @@ namespace App\Containers\Page\UI\API\Requests;
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class CreatePageRequest.
+ * Class GetAllPagesByBookRequest.
  */
-class CreatePageRequest extends Request
+class GetAllPagesByBookRequest extends Request
 {
 
     /**
@@ -15,7 +15,7 @@ class CreatePageRequest extends Request
      *
      * @var string
      */
-    protected $transporter = \App\Containers\Page\Data\Transporters\CreatePageTransporter::class;
+    // protected $transporter = \App\Ship\Transporters\DataTransporter::class;
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -43,7 +43,7 @@ class CreatePageRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+        'book_id',
     ];
 
     /**
@@ -52,8 +52,7 @@ class CreatePageRequest extends Request
     public function rules()
     {
         return [
-            'book_id' => 'required|exists:books,id',
-            'text' => 'required',
+            'book_id' => 'required',
         ];
     }
 

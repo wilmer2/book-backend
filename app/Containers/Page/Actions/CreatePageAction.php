@@ -10,8 +10,14 @@ class CreatePageAction extends Action
 {
     public function run(Request $request)
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
+        $folder = \Config::get('page-container.folder');
+        $imageUrl = Apiato::call('Files@CreateFileSubAction', [$request, $folder]);
+
+        $data = $request->merge(['image_url' => $imageUrl])
+          ->sanitizeInput([
+            'book_id',
+            'text',
+            'image_url'
         ]);
 
         $page = Apiato::call('Page@CreatePageTask', [$data]);

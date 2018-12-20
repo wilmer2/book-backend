@@ -19,7 +19,7 @@ class BookTransformer extends Transformer
      * @var  array
      */
     protected $availableIncludes = [
-        'user'
+        'user',
     ];
 
     /**

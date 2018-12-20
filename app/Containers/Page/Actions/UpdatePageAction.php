@@ -10,11 +10,26 @@ class UpdatePageAction extends Action
 {
     public function run(Request $request)
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
+        $page = Apiato::call('Page@FindPageByIdTask', [$request->id]);
+        $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
+        $folder = \Config::get('page-container.folder');
+
+        Apiato::call('Book@BookBelongToUserTask', [$user, $page->book]);
+
+        $imageUrl = Apiato::call('Files@CreateFileSubAction', [
+          $request, 
+          $folder,
+          $page->image_url
         ]);
 
-        $page = Apiato::call('Page@UpdatePageTask', [$request->id, $data]);
+        $data = $request->merge(['image_url' => $imageUrl])
+          ->sanitizeInput([
+            'text',
+            'image_url',
+        ]);
+
+        $pageData = array_filter($data);
+        $page = Apiato::call('Page@UpdatePageTask', [$request->id, $pageData]);
 
         return $page;
     }

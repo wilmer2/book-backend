@@ -7,6 +7,8 @@ use App\Containers\Page\UI\API\Requests\DeletePageRequest;
 use App\Containers\Page\UI\API\Requests\GetAllPagesRequest;
 use App\Containers\Page\UI\API\Requests\FindPageByIdRequest;
 use App\Containers\Page\UI\API\Requests\UpdatePageRequest;
+use App\Containers\Page\UI\API\Requests\GetAllPagesByBookRequest;
+
 use App\Containers\Page\UI\API\Transformers\PageTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use Apiato\Core\Foundation\Facades\Apiato;
@@ -71,5 +73,12 @@ class Controller extends ApiController
         Apiato::call('Page@DeletePageAction', [$request]);
 
         return $this->noContent();
+    }
+
+    public function getAllPageByBook(GetAllPagesByBookRequest $request)
+    {
+        $pages = Apiato::call('Page@GetAllPagesByBookAction', [$request]);
+
+        return $this->transform($pages, PageTransformer::class);
     }
 }

@@ -22,24 +22,26 @@ class PageTransformer extends Transformer
     ];
 
     /**
-     * @param Page $entity
+     * @param Page $page
      *
      * @return array
      */
-    public function transform(Page $entity)
+    public function transform(Page $page)
     {
         $response = [
             'object' => 'Page',
-            'id' => $entity->getHashedKey(),
-            'created_at' => $entity->created_at,
-            'updated_at' => $entity->updated_at,
-
+            'id' => $page->getHashedKey(),
+            'text' => $page->text,
+            'book_id' => $page->book_id,
+            'image_url' => $page->file_url,
+            'created_at' => $page->created_at,
+            'updated_at' => $page->updated_at,
         ];
 
-        $response = $this->ifAdmin([
-            'real_id'    => $entity->id,
+        /*$response = $this->ifAdmin([
+            'real_id'    => $page->id,
             // 'deleted_at' => $entity->deleted_at,
-        ], $response);
+        ], $response);*/
 
         return $response;
     }

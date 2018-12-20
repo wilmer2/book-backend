@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'folder' => 'books'
+  'folder' => 'books',
 ];

@@ -14,7 +14,14 @@ class CreatePageTables extends Migration
         Schema::create('pages', function (Blueprint $table) {
 
             $table->increments('id');
+            $table->unsignedInteger('book_id');
+            $table->string('image_url')->nullable();
+            $table->boolean('public')->default(0);
+            $table->binary('text');
 
+            $table->foreign('book_id')->references('id')->on('books')
+              ->onDelete('cascade');
+              
             $table->timestamps();
             //$table->softDeletes();
 
