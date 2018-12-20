@@ -23,7 +23,8 @@ class GetTakeBooksTask extends Task
 
     public function run()
     {
-        return $this->repository->pushCriteria(new TakeLimitCriteria)
+        return $this->repository
+          ->pushCriteria(new TakeLimitCriteria)
           ->get();
     }
 
