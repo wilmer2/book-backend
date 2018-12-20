@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @apiGroup           Book
- * @apiName            getBookHome
+ * @apiGroup           Page
+ * @apiName            getAllPages
  *
- * @api                {GET} /v1/books/home Endpoint title here..
+ * @api                {GET} /v1/pages Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -20,7 +20,10 @@
  */
 
 /** @var Route $router */
-$router->get('/', [
-    'as' => 'api_book_get_book_home',
-    'uses'  => 'Controller@getBooksToHome',
+$router->get('pages', [
+    'as' => 'api_page_get_all_pages',
+    'uses'  => 'Controller@getAllPages',
+    'middleware' => [
+      'auth:api',
+    ],
 ]);

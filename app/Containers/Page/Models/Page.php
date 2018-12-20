@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Containers\Category\Models;
+namespace App\Containers\Page\Models;
 
 use App\Ship\Parents\Models\Model;
 use App\Containers\Book\Models\Book;
 
-class Category extends Model
+class Page extends Model
 {
     protected $fillable = [
-      'name',
-      'active',
+      'book_id',
+      'text',
+      'image_url',
     ];
 
     protected $attributes = [
@@ -21,7 +22,7 @@ class Category extends Model
     ];
 
     protected $casts = [
-      'active' => 'boolean',
+
     ];
 
     protected $dates = [
@@ -29,13 +30,18 @@ class Category extends Model
         'updated_at',
     ];
 
-    public function books() 
+    public function getFileUrlAttribute() 
     {
-        return $this->hasMany(Book::class);
+        return $this->image_url ? \Storage::url($this->image_url) : null;
+    }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
     }
 
     /**
      * A resource key to be used by the the JSON API Serializer responses.
      */
-    protected $resourceKey = 'categories';
+    protected $resourceKey = 'pages';
 }

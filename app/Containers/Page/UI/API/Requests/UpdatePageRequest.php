@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Containers\Book\UI\API\Requests;
+namespace App\Containers\Page\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class GetBooksToHomeRequest.
+ * Class UpdatePageRequest.
  */
-class GetBooksToHomeRequest extends Request
+class UpdatePageRequest extends Request
 {
 
     /**
@@ -15,7 +15,7 @@ class GetBooksToHomeRequest extends Request
      *
      * @var string
      */
-    // protected $transporter = \App\Ship\Transporters\DataTransporter::class;
+    protected $transporter = \App\Containers\Page\Data\Transporters\UpdatePageTransporter::class;
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -33,7 +33,7 @@ class GetBooksToHomeRequest extends Request
      * @var  array
      */
     protected $decode = [
-        'categories_ids.*',
+        'id',       
     ];
 
     /**
@@ -43,7 +43,7 @@ class GetBooksToHomeRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+        'id',
     ];
 
     /**
@@ -52,8 +52,8 @@ class GetBooksToHomeRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
-            // '{user-input}' => 'required|max:255',
+            'id' => 'required|exists:pages,id',
+            'text' => 'required',
         ];
     }
 
@@ -62,6 +62,8 @@ class GetBooksToHomeRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return $this->check([
+            'hasAccess',
+        ]);
     }
 }
