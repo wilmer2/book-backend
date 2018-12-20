@@ -52,7 +52,7 @@ class User extends UserModel implements ChargeableInterface
         'confirmed',
         'is_client',
         'active',
-        'categories_ids'
+        'categories_ids',
     ];
 
     protected $casts = [
