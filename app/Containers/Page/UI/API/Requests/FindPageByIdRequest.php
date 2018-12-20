@@ -62,8 +62,6 @@ class FindPageByIdRequest extends Request
      */
     public function authorize()
     {
-        return $this->check([
-            'hasAccess',
-        ]);
+        return true;
     }
 }

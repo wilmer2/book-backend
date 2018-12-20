@@ -23,7 +23,4 @@
 $router->get('pages/{id}', [
     'as' => 'api_page_find_page_by_id',
     'uses'  => 'Controller@findPageById',
-    'middleware' => [
-      'auth:api',
-    ],
 ]);
