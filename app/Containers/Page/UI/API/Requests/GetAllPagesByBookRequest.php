@@ -52,7 +52,7 @@ class GetAllPagesByBookRequest extends Request
     public function rules()
     {
         return [
-            'book_id' => 'required',
+            'book_id' => 'required|exists:books,id',
         ];
     }
 
