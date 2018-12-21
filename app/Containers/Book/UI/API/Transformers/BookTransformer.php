@@ -5,9 +5,12 @@ namespace App\Containers\Book\UI\API\Transformers;
 use App\Containers\Book\Models\Book;
 use App\Ship\Parents\Transformers\Transformer;
 use App\Containers\User\UI\API\Transformers\UserTransformer;
+use Apiato\Core\Traits\HashIdTrait;
 
 class BookTransformer extends Transformer
 {
+    use HashIdTrait;
+
     /**
      * @var  array
      */
@@ -35,7 +38,7 @@ class BookTransformer extends Transformer
             'name' => $book->name,
             'description' => $book->description,
             'copyright' => $book->copyright,
-            'category_id' => $book->category_id,
+            'category_id' => $this->encode($book->category_id),
             'image_url' => $book->file_url,
             'views' => (int) $book->views,
             'created_at' => $book->created_at,
