@@ -10,6 +10,15 @@ class DeleteCommentAction extends Action
 {
     public function run(Request $request)
     {
+        $comment = Apiato::call('Comment@FindCommentByIdTask', [$request->id]);
+
+        $commentsIds = $comment->comments()
+          ->get()
+          ->pluck('id')
+          ->toArray();
+          
+        Apiato::call('Comment@DestroyCommentsTask', [$commentsIds]);
+
         return Apiato::call('Comment@DeleteCommentTask', [$request->id]);
     }
 }
