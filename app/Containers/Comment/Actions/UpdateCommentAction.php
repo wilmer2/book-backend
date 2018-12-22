@@ -10,11 +10,16 @@ class UpdateCommentAction extends Action
 {
     public function run(Request $request)
     {
+        $comment = Apiato::call('Comment@FindCommentByIdTask', [$request->id]);
+        $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
+
+        Apiato::call('Comment@CommentBelongToUserTask', [$user, $comment]);
+
         $data = $request->sanitizeInput([
-            // add your request data here
+            'body',
         ]);
 
-        $comment = Apiato::call('Comment@UpdateCommentTask', [$request->id, $data]);
+        $comment = Apiato::call('Comment@UpdateCommentTask', [$comment->id, $data]);
 
         return $comment;
     }
