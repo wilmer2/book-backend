@@ -2,7 +2,7 @@
 
 namespace App\Containers\Comment\Tasks;
 
-use App\Containers\Comment\Data\Repositories\CommentRepository;
+use App\Containers\Comment\Models\Comment;
 use App\Ship\Exceptions\CreateResourceFailedException;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
@@ -10,17 +10,12 @@ use Exception;
 class CreateCommentTask extends Task
 {
 
-    protected $repository;
-
-    public function __construct(CommentRepository $repository)
+    public function run($entity, array $data)
     {
-        $this->repository = $repository;
-    }
+        $comment = new Comment($data);
 
-    public function run(array $data)
-    {
         try {
-            return $this->repository->create($data);
+            return $entity->comments()->save($comment);
         }
         catch (Exception $exception) {
             throw new CreateResourceFailedException();

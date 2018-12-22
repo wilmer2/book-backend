@@ -7,6 +7,8 @@ use App\Containers\Comment\UI\API\Requests\DeleteCommentRequest;
 use App\Containers\Comment\UI\API\Requests\GetAllCommentsRequest;
 use App\Containers\Comment\UI\API\Requests\FindCommentByIdRequest;
 use App\Containers\Comment\UI\API\Requests\UpdateCommentRequest;
+use App\Containers\Comment\UI\API\Requests\AddCommentToBookRequest;
+use App\Containers\Comment\UI\API\Requests\AddCommentToPageRequest;
 use App\Containers\Comment\UI\API\Transformers\CommentTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use Apiato\Core\Foundation\Facades\Apiato;
@@ -71,5 +73,19 @@ class Controller extends ApiController
         Apiato::call('Comment@DeleteCommentAction', [$request]);
 
         return $this->noContent();
+    }
+
+    public function addCommentToBook(AddCommentToBookRequest $request)
+    {
+        $comment = Apiato::call('Comment@AddCommentToBookAction', [$request]);
+
+        return $this->transform($comment, CommentTransformer::class);
+    }
+
+    public function addCommentToPage(AddCommentToPageRequest $request)
+    {
+        $comment = Apiato::call('Comment@AddCommentToPageAction', [$request]);
+
+        return $this->transform($comment, CommentTransformer::class);
     }
 }

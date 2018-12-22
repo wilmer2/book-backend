@@ -6,6 +6,7 @@ use App\Ship\Parents\Models\Model;
 use App\Containers\User\Models\User;
 use App\Containers\Category\Models\Category;
 use App\Containers\Page\Models\Page;
+use App\Containers\Comment\Models\Comment;
 use App\Containers\Viewer\Models\Viewer;
 
 
@@ -60,6 +61,11 @@ class Book extends Model
     public function pages() 
     {
         return $this->hasMany(Page::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     /**

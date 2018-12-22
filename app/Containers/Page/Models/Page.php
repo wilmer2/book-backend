@@ -4,6 +4,7 @@ namespace App\Containers\Page\Models;
 
 use App\Ship\Parents\Models\Model;
 use App\Containers\Book\Models\Book;
+use App\Containers\Comment\Models\Comment;
 
 class Page extends Model
 {
@@ -38,6 +39,11 @@ class Page extends Model
     public function book()
     {
         return $this->belongsTo(Book::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     /**
