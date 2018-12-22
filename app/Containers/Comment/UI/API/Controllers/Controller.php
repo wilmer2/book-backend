@@ -9,6 +9,7 @@ use App\Containers\Comment\UI\API\Requests\FindCommentByIdRequest;
 use App\Containers\Comment\UI\API\Requests\UpdateCommentRequest;
 use App\Containers\Comment\UI\API\Requests\AddCommentToBookRequest;
 use App\Containers\Comment\UI\API\Requests\AddCommentToPageRequest;
+use App\Containers\Comment\UI\API\Requests\AddCommentToCommentRequest;
 use App\Containers\Comment\UI\API\Transformers\CommentTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use Apiato\Core\Foundation\Facades\Apiato;
@@ -20,16 +21,6 @@ use Apiato\Core\Foundation\Facades\Apiato;
  */
 class Controller extends ApiController
 {
-    /**
-     * @param CreateCommentRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function createComment(CreateCommentRequest $request)
-    {
-        $comment = Apiato::call('Comment@CreateCommentAction', [$request]);
-
-        return $this->created($this->transform($comment, CommentTransformer::class));
-    }
 
     /**
      * @param FindCommentByIdRequest $request
@@ -85,6 +76,13 @@ class Controller extends ApiController
     public function addCommentToPage(AddCommentToPageRequest $request)
     {
         $comment = Apiato::call('Comment@AddCommentToPageAction', [$request]);
+
+        return $this->transform($comment, CommentTransformer::class);
+    }
+
+    public function addCommentToComment(AddCommentToCommentRequest $request)
+    {
+        $comment = Apiato::call('Comment@AddCommentToCommentAction', [$request]);
 
         return $this->transform($comment, CommentTransformer::class);
     }

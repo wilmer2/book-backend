@@ -5,9 +5,9 @@ namespace App\Containers\Comment\UI\API\Requests;
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class CreateCommentRequest.
+ * Class AddCommentToCommentRequest.
  */
-class CreateCommentRequest extends Request
+class AddCommentToCommentRequest extends Request
 {
 
     /**
@@ -15,7 +15,7 @@ class CreateCommentRequest extends Request
      *
      * @var string
      */
-    protected $transporter = \App\Containers\Comment\Data\Transporters\CreateCommentTransporter::class;
+    // protected $transporter = \App\Ship\Transporters\DataTransporter::class;
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -33,7 +33,7 @@ class CreateCommentRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+        'id',
     ];
 
     /**
@@ -43,7 +43,7 @@ class CreateCommentRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+        'id',
     ];
 
     /**
@@ -52,8 +52,8 @@ class CreateCommentRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
-            // '{user-input}' => 'required|max:255',
+            'id' => 'required|exists:comments,id',
+            'body' => 'required',
         ];
     }
 

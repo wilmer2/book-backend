@@ -2,9 +2,9 @@
 
 /**
  * @apiGroup           Comment
- * @apiName            createComment
+ * @apiName            addCommentToComment
  *
- * @api                {POST} /v1/comments Endpoint title here..
+ * @api                {POST} /v1/comments/:id/add-comment Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -20,9 +20,9 @@
  */
 
 /** @var Route $router */
-$router->post('comments', [
-    'as' => 'api_comment_create_comment',
-    'uses'  => 'Controller@createComment',
+$router->post('comments/{id}/add-comment', [
+    'as' => 'api_comment_add_comment_to_comment',
+    'uses'  => 'Controller@addCommentToComment',
     'middleware' => [
       'auth:api',
     ],
