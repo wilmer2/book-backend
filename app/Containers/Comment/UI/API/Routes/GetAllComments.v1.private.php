@@ -23,7 +23,4 @@
 $router->get('comments', [
     'as' => 'api_comment_get_all_comments',
     'uses'  => 'Controller@getAllComments',
-    'middleware' => [
-      'auth:api',
-    ],
 ]);

@@ -10,13 +10,7 @@ use App\Ship\Parents\Requests\Request;
 class GetAllCommentsRequest extends Request
 {
 
-    /**
-     * The assigned Transporter for this Request
-     *
-     * @var string
-     */
-    protected $transporter = \App\Containers\Comment\Data\Transporters\GetAllCommentsTransporter::class;
-
+    
     /**
      * Define which Roles and/or Permissions has access to this request.
      *
@@ -33,7 +27,9 @@ class GetAllCommentsRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+        'book_id',
+        'page_id',
+        'comment_id',
     ];
 
     /**
@@ -43,7 +39,7 @@ class GetAllCommentsRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+        //
     ];
 
     /**
@@ -52,8 +48,9 @@ class GetAllCommentsRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
-            // '{user-input}' => 'required|max:255',
+            'book_id' => 'required_without_all:page_id,comment_id|exists:books,id',
+            'page_id' => 'required_without_all:book_id,comment_id|exists:pages,id',
+            'comment_id' => 'required_without_all:page_id,book_id|exists:comments,id',
         ];
     }
 
@@ -62,8 +59,6 @@ class GetAllCommentsRequest extends Request
      */
     public function authorize()
     {
-        return $this->check([
-            'hasAccess',
-        ]);
+        return true;
     }
 }
