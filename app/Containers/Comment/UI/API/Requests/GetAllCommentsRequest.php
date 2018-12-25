@@ -1,22 +1,16 @@
 <?php
 
-namespace App\Containers\Page\UI\API\Requests;
+namespace App\Containers\Comment\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class GetAllPagesByBookRequest.
+ * Class GetAllCommentsRequest.
  */
-class GetAllPagesByBookRequest extends Request
+class GetAllCommentsRequest extends Request
 {
 
-    /**
-     * The assigned Transporter for this Request
-     *
-     * @var string
-     */
-    // protected $transporter = \App\Ship\Transporters\DataTransporter::class;
-
+    
     /**
      * Define which Roles and/or Permissions has access to this request.
      *
@@ -34,6 +28,8 @@ class GetAllPagesByBookRequest extends Request
      */
     protected $decode = [
         'book_id',
+        'page_id',
+        'comment_id',
     ];
 
     /**
@@ -43,7 +39,7 @@ class GetAllPagesByBookRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        'book_id',
+        //
     ];
 
     /**
@@ -52,7 +48,9 @@ class GetAllPagesByBookRequest extends Request
     public function rules()
     {
         return [
-            'book_id' => 'required|exists:books,id',
+            'book_id' => 'required_without_all:page_id,comment_id|exists:books,id',
+            'page_id' => 'required_without_all:book_id,comment_id|exists:pages,id',
+            'comment_id' => 'required_without_all:page_id,book_id|exists:comments,id',
         ];
     }
 

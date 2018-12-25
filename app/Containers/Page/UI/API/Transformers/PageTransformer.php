@@ -4,9 +4,11 @@ namespace App\Containers\Page\UI\API\Transformers;
 
 use App\Containers\Page\Models\Page;
 use App\Ship\Parents\Transformers\Transformer;
+use Apiato\Core\Traits\HashIdTrait;
 
 class PageTransformer extends Transformer
 {
+    use HashIdTrait;
     /**
      * @var  array
      */
@@ -32,7 +34,7 @@ class PageTransformer extends Transformer
             'object' => 'Page',
             'id' => $page->getHashedKey(),
             'text' => $page->text,
-            'book_id' => $page->book_id,
+            'book_id' => $this->encode($page->book_id),
             'image_url' => $page->file_url,
             'created_at' => $page->created_at,
             'updated_at' => $page->updated_at,

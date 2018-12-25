@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Containers\Page\UI\API\Requests;
+namespace App\Containers\Comment\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class GetAllPagesByBookRequest.
+ * Class AddCommentToBook.
  */
-class GetAllPagesByBookRequest extends Request
+class AddCommentToBookRequest extends Request
 {
 
     /**
@@ -53,6 +53,7 @@ class GetAllPagesByBookRequest extends Request
     {
         return [
             'book_id' => 'required|exists:books,id',
+            'body' => 'required',
         ];
     }
 
@@ -61,6 +62,8 @@ class GetAllPagesByBookRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return $this->check([
+            'hasAccess',
+        ]);
     }
 }

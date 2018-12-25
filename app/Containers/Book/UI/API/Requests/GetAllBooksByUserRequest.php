@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Containers\Page\UI\API\Requests;
+namespace App\Containers\Book\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class GetAllPagesByBookRequest.
+ * Class GetAllBooksByUserRequest.
  */
-class GetAllPagesByBookRequest extends Request
+class GetAllBooksByUserRequest extends Request
 {
 
     /**
@@ -33,7 +33,7 @@ class GetAllPagesByBookRequest extends Request
      * @var  array
      */
     protected $decode = [
-        'book_id',
+        'user_id',
     ];
 
     /**
@@ -43,7 +43,7 @@ class GetAllPagesByBookRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        'book_id',
+        'user_id',
     ];
 
     /**
@@ -52,7 +52,7 @@ class GetAllPagesByBookRequest extends Request
     public function rules()
     {
         return [
-            'book_id' => 'required|exists:books,id',
+            'user_id' => 'required|exists:users,id',
         ];
     }
 

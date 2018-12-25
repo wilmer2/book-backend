@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @apiGroup           Page
- * @apiName            findPageById
+ * @apiGroup           Book
+ * @apiName            getAllBooksByUser
  *
- * @api                {GET} /v1/pages/:id Endpoint title here..
+ * @api                {GET} /v1/books/by-user/:user_id Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -20,7 +20,7 @@
  */
 
 /** @var Route $router */
-$router->get('pages/{id}', [
-    'as' => 'api_page_find_page_by_id',
-    'uses'  => 'Controller@findPageById',
+$router->get('books/by-user/{user_id}', [
+    'as' => 'api_book_get_all_books_by_user',
+    'uses'  => 'Controller@getAllBooksByUser',
 ]);

@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @apiGroup           Page
- * @apiName            findPageById
+ * @apiGroup           Comment
+ * @apiName            getAllComments
  *
- * @api                {GET} /v1/pages/:id Endpoint title here..
+ * @api                {GET} /v1/comments Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -20,7 +20,7 @@
  */
 
 /** @var Route $router */
-$router->get('pages/{id}', [
-    'as' => 'api_page_find_page_by_id',
-    'uses'  => 'Controller@findPageById',
+$router->get('comments', [
+    'as' => 'api_comment_get_all_comments',
+    'uses'  => 'Controller@getAllComments',
 ]);

@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @apiGroup           Page
- * @apiName            findPageById
+ * @apiGroup           Comment
+ * @apiName            deleteComment
  *
- * @api                {GET} /v1/pages/:id Endpoint title here..
+ * @api                {DELETE} /v1/comments/:id Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -20,7 +20,10 @@
  */
 
 /** @var Route $router */
-$router->get('pages/{id}', [
-    'as' => 'api_page_find_page_by_id',
-    'uses'  => 'Controller@findPageById',
+$router->delete('comments/{id}', [
+    'as' => 'api_comment_delete_comment',
+    'uses'  => 'Controller@deleteComment',
+    'middleware' => [
+      'auth:api',
+    ],
 ]);

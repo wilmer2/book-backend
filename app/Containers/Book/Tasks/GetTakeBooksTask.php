@@ -30,12 +30,14 @@ class GetTakeBooksTask extends Task
 
     public function ordered()
     {
-        return $this->repository->pushCriteria(new OrderByCreationDateDescendingCriteria);
+        return $this->repository
+          ->pushCriteria(new OrderByCreationDateDescendingCriteria);
     }
 
     public function moreViews()
     {
-        return $this->repository->pushCriteria(new OrderByViewDescendingCriteria);
+        return $this->repository
+          ->pushCriteria(new OrderByViewDescendingCriteria);
     }
 
     public function search($search)

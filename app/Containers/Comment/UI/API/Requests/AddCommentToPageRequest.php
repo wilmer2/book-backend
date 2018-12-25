@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Containers\Page\UI\API\Requests;
+namespace App\Containers\Comment\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class GetAllPagesByBookRequest.
+ * Class AddCommentToPageRequest.
  */
-class GetAllPagesByBookRequest extends Request
+class AddCommentToPageRequest extends Request
 {
 
     /**
@@ -33,7 +33,7 @@ class GetAllPagesByBookRequest extends Request
      * @var  array
      */
     protected $decode = [
-        'book_id',
+        'page_id',
     ];
 
     /**
@@ -43,7 +43,7 @@ class GetAllPagesByBookRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        'book_id',
+        'page_id',
     ];
 
     /**
@@ -52,7 +52,8 @@ class GetAllPagesByBookRequest extends Request
     public function rules()
     {
         return [
-            'book_id' => 'required|exists:books,id',
+            'page_id' => 'required|exists:pages,id',
+            'body' => 'required',
         ];
     }
 
@@ -61,6 +62,8 @@ class GetAllPagesByBookRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return $this->check([
+            'hasAccess',
+        ]);
     }
 }

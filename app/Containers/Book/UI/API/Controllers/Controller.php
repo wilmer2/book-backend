@@ -9,6 +9,7 @@ use App\Containers\Book\UI\API\Requests\FindBookByIdRequest;
 use App\Containers\Book\UI\API\Requests\UpdateBookRequest;
 use App\Containers\Book\UI\API\Requests\AddViewerRequest;
 use App\Containers\Book\UI\API\Requests\GetBooksToHomeRequest;
+use App\Containers\Book\UI\API\Requests\GetAllBooksByUserRequest;
 use App\Containers\Book\UI\API\Transformers\BookTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use Apiato\Core\Foundation\Facades\Apiato;
@@ -86,6 +87,13 @@ class Controller extends ApiController
     {
         $books = Apiato::call('Book@GetBooksToHomeAction', [$request]);
 
+        return $this->transform($books, BookTransformer::class);
+    }
+
+    public function getAllBooksByUser(getAllBooksByUserRequest $request)
+    {
+        $books = Apiato::call('Book@GetAllBooksByUserAction', [$request]);
+        
         return $this->transform($books, BookTransformer::class);
     }
 }
