@@ -4,6 +4,7 @@ namespace App\Containers\Comment\Models;
 
 use App\Ship\Parents\Models\Model;
 use App\Containers\User\Models\User;
+use App\Containers\Like\Models\Like;
 
 class Comment extends Model
 {
@@ -42,6 +43,11 @@ class Comment extends Model
     public function commentable()
     {
         return $this->morphTo();
+    }
+
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
     }
     
     /**
