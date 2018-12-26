@@ -8,6 +8,7 @@ use App\Containers\Category\Models\Category;
 use App\Containers\Page\Models\Page;
 use App\Containers\Comment\Models\Comment;
 use App\Containers\Viewer\Models\Viewer;
+use App\Containers\Like\Models\Like;
 
 
 class Book extends Model
@@ -66,6 +67,11 @@ class Book extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
     }
 
     /**
