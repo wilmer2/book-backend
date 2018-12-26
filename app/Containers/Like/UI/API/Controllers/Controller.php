@@ -7,6 +7,7 @@ use App\Containers\Like\UI\API\Requests\DeleteLikeRequest;
 use App\Containers\Like\UI\API\Requests\GetAllLikesRequest;
 use App\Containers\Like\UI\API\Requests\FindLikeByIdRequest;
 use App\Containers\Like\UI\API\Requests\UpdateLikeRequest;
+use App\Containers\Like\UI\API\Requests\FindLikeByTypeRequest;
 use App\Containers\Like\UI\API\Transformers\LikeTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use Apiato\Core\Foundation\Facades\Apiato;
@@ -30,18 +31,6 @@ class Controller extends ApiController
     }
 
     /**
-     * @param FindLikeByIdRequest $request
-     * @return array
-     */
-    public function findLikeById(FindLikeByIdRequest $request)
-    {
-        $like = Apiato::call('Like@FindLikeByIdAction', [$request]);
-
-        return $this->transform($like, LikeTransformer::class);
-    }
-
-
-    /**
      * @param DeleteLikeRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -50,5 +39,12 @@ class Controller extends ApiController
         Apiato::call('Like@DeleteLikeAction', [$request]);
 
         return $this->noContent();
+    }
+
+    public function findLikeByType(FindLikeByTypeRequest $request)
+    {
+        $like = Apiato::call('Like@FindLikeByTypeAction', [$request]);
+
+        return $this->transform($like, LikeTransformer::class);
     }
 }

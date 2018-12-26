@@ -5,9 +5,9 @@ namespace App\Containers\Like\UI\API\Requests;
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class FindLikeByIdRequest.
+ * Class FindLikeByTypeRequest.
  */
-class FindLikeByIdRequest extends Request
+class FindLikeByTypeRequest extends Request
 {
 
     /**
@@ -33,7 +33,9 @@ class FindLikeByIdRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+        'book_id',
+        'page_id',
+        'comment_id',
     ];
 
     /**
@@ -52,7 +54,10 @@ class FindLikeByIdRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
+            'book_id' => 'required_without_all:page_id,comment_id|exists:books,id',
+            'page_id' => 'required_without_all:book_id,comment_id|exists:pages,id',
+            'comment_id' => 'required_without_all:book_id,page_id|exists:comments,id',
+
             // '{user-input}' => 'required|max:255',
         ];
     }

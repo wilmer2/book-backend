@@ -2,9 +2,9 @@
 
 /**
  * @apiGroup           Like
- * @apiName            findLikeById
+ * @apiName            findLikeByType
  *
- * @api                {GET} /v1/likes/:id Endpoint title here..
+ * @api                {GET} /v1/likes/by-type Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -20,9 +20,9 @@
  */
 
 /** @var Route $router */
-$router->get('likes/{id}', [
-    'as' => 'api_like_find_like_by_id',
-    'uses'  => 'Controller@findLikeById',
+$router->get('likes/by-type', [
+    'as' => 'api_like_find_like_by_type',
+    'uses'  => 'Controller@findLikeByType',
     'middleware' => [
       'auth:api',
     ],
