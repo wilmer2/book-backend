@@ -5,6 +5,8 @@ namespace App\Containers\Page\Models;
 use App\Ship\Parents\Models\Model;
 use App\Containers\Book\Models\Book;
 use App\Containers\Comment\Models\Comment;
+use App\Containers\Like\Models\Like;
+
 
 class Page extends Model
 {
@@ -44,6 +46,11 @@ class Page extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
     }
 
     /**
