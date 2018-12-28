@@ -6,6 +6,7 @@ use App\Ship\Parents\Actions\Action;
 use App\Ship\Parents\Requests\Request;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Comment\Notifications\CommentNotification;
+use App\Containers\Book\Models\Book;
 
 class AddCommentToCommentAction extends Action
 {
@@ -24,11 +25,14 @@ class AddCommentToCommentAction extends Action
         $owner = $commentParent->commentable;
         $commentMessage = \Config::get('comment-container.comment-to-comment');
 
-        $owner->user->notify(new CommentNotification(
+        $ownerUser = $owner instanceof Book ? $owner->user : $owner->book->user;
+
+        Apiato::call('Comment@SendCommentNotificationTask', [
+          $user,
+          $ownerUser,
           $owner,
           $commentMessage,
-          $user->name
-        ));
+        ]);
 
         return $comment;
     }

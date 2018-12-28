@@ -5,7 +5,6 @@ namespace App\Containers\Comment\Actions;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Parents\Requests\Request;
 use Apiato\Core\Foundation\Facades\Apiato;
-use App\Containers\Comment\Notifications\CommentNotification;
 
 class AddCommentToBookAction extends Action
 {
@@ -23,7 +22,12 @@ class AddCommentToBookAction extends Action
         $comment = Apiato::call('Comment@CreateCommentTask', [$book, $data]);
         $bookMessage = \Config::get('comment-container.comment-to-book');
 
-        $book->user->notify(new CommentNotification($book, $bookMessage, $user->name));
+        Apiato::call('Comment@SendCommentNotificationTask', [
+          $user, 
+          $book->user,
+          $book,
+          $bookMessage,
+        ]);
 
         return $comment;
     }

@@ -7,7 +7,8 @@ use App\Containers\Page\Models\Page;
 use App\Ship\Parents\Notifications\Notification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
+use Illuminate\Notifications\Messages\BroadcastMessage;
+use Illuminate\Notifications\Messages\MailMessage;
 
 /**
  * Class CommentNotification
@@ -30,8 +31,7 @@ class CommentNotification extends Notification implements ShouldQueue
 
     public function via($notifiable)
     {
-        return ['database'];
-        //return ['mail', 'database', 'broadcast'];
+        return ['database', 'broadcast', 'mail'];
     }
 
     public function toArray($notifiable)
@@ -49,5 +49,12 @@ class CommentNotification extends Notification implements ShouldQueue
         }
 
         return $notification;
+    }
+
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                      ->greeting('Hola!')
+                      ->line('tienes un comentario pendiente');
     }
 }
