@@ -8,6 +8,7 @@ use App\Containers\Book\Models\Book;
 use App\Containers\Category\Models\Category;
 use App\Containers\Payment\Traits\ChargeableTrait;
 use App\Ship\Parents\Models\UserModel;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class User.
@@ -19,6 +20,7 @@ class User extends UserModel implements ChargeableInterface
 
     use ChargeableTrait;
     use AuthorizationTrait;
+    use Notifiable;
 
     /**
      * The database table used by the model.
