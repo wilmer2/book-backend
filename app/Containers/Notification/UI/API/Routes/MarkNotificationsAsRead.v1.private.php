@@ -21,7 +21,6 @@
 
 /** @var Route $router */
 $router->post('notifications', [
-    'as' => 'api_notification_mark_as_read',
     'uses'  => 'Controller@markNotificationsAsRead',
     'middleware' => [
       'auth:api',

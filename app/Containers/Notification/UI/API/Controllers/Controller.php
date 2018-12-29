@@ -34,9 +34,8 @@ class Controller extends ApiController
 
     public function markNotificationsAsRead(MarkNotificationsAsReadRequest $request)
     {
-        $notifications = Apiato::call('Notification@MarkNotificationsAsReadAction', [$request]);
+        Apiato::call('Notification@MarkNotificationsAsReadAction', [$request]);
 
-        return $this->transform($notifications, NotificationTransformer::class, [], [],
-          \Config::get('notification-container.resources-key'));
+        return $this->noContent();
     }
 }
