@@ -28,13 +28,15 @@ class Controller extends ApiController
     {
         $notifications = Apiato::call('Notification@GetAllNotificationsAction', [$request]);
 
-        return $this->transform($notifications, NotificationTransformer::class);
+        return $this->transform($notifications, NotificationTransformer::class, [], [], 
+          \Config::get('notification-container.resources-key'));
     }
 
     public function markNotificationsAsRead(MarkNotificationsAsReadRequest $request)
     {
         $notifications = Apiato::call('Notification@MarkNotificationsAsReadAction', [$request]);
 
-        return $this->transform($notifications, NotificationTransformer::class);
+        return $this->transform($notifications, NotificationTransformer::class, [], [],
+          \Config::get('notification-container.resources-key'));
     }
 }

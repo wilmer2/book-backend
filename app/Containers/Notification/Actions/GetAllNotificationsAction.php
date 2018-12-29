@@ -14,7 +14,6 @@ class GetAllNotificationsAction extends Action
     {
         $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
         
-//        return Notification::all();
-        return $user->notifications()->get()->mapInto(NotificationValue::class);
+        return $user->notifications()->paginate();
     }
 }

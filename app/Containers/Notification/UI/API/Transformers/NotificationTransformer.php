@@ -5,6 +5,8 @@ namespace App\Containers\Notification\UI\API\Transformers;
 use App\Containers\Notification\Models\Notification;
 use App\Ship\Parents\Transformers\Transformer;
 use App\Containers\Notification\Values\NotificationValue;
+use Illuminate\Notifications\DatabaseNotification;
+
 
 class NotificationTransformer extends Transformer
 {
@@ -27,7 +29,7 @@ class NotificationTransformer extends Transformer
      *
      * @return array
      */
-    public function transform(NotificationValue $notification)
+    public function transform(DatabaseNotification $notification)
     {
         $response = [
             'object' => 'Notification',
