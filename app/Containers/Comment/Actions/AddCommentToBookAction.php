@@ -29,6 +29,8 @@ class AddCommentToBookAction extends Action
           $bookMessage,
         ]);
 
+        Apiato::call('Notification@CountUnreadNotificationsTask', [$user]);
+
         return $comment;
     }
 }

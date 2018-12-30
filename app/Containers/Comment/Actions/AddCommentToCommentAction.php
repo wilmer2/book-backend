@@ -34,6 +34,8 @@ class AddCommentToCommentAction extends Action
           $commentMessage,
         ]);
 
+        Apiato::call('Notification@CountUnreadNotificationsTask', [$user]);
+
         return $comment;
     }
 }
