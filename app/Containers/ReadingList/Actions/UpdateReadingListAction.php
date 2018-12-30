@@ -11,7 +11,7 @@ class UpdateReadingListAction extends Action
     public function run(Request $request)
     {
         $data = $request->sanitizeInput([
-            // add your request data here
+            'name',
         ]);
 
         $readinglist = Apiato::call('ReadingList@UpdateReadingListTask', [$request->id, $data]);
