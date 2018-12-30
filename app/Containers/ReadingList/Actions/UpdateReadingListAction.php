@@ -10,12 +10,22 @@ class UpdateReadingListAction extends Action
 {
     public function run(Request $request)
     {
+        $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
+
+        $readingList = Apiato::call('ReadingList@FindReadingListByUserTask', [
+          $user, 
+          $request->id,
+        ]);
+
         $data = $request->sanitizeInput([
             'name',
         ]);
 
-        $readinglist = Apiato::call('ReadingList@UpdateReadingListTask', [$request->id, $data]);
+        $readingListUpdated = Apiato::call('ReadingList@UpdateReadingListTask', [
+          $readingList->id, 
+          $data,
+        ]);
 
-        return $readinglist;
+        return $readingListUpdated;
     }
 }
