@@ -12,7 +12,8 @@ class MarkNotificationsAsReadAction extends Action
     public function run(Request $request)
     {
         $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
-        
-        return $user->unreadNotifications->markAsRead();
+        $user->unreadNotifications()->update(['read_at' => now()]);
+
+        Apiato::call('Notification@CountUnreadNotificationsTask', [$user]);
     }
 }
