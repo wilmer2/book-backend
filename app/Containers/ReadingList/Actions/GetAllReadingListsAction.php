@@ -10,8 +10,8 @@ class GetAllReadingListsAction extends Action
 {
     public function run(Request $request)
     {
-        $readinglists = Apiato::call('ReadingList@GetAllReadingListsTask', [], ['addRequestCriteria']);
+        $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
 
-        return $readinglists;
+        return $user->readingLists;
     }
 }

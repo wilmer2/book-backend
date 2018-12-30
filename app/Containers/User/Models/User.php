@@ -98,7 +98,9 @@ class User extends UserModel implements ChargeableInterface
 
     public function readingLists()
     {
-        return $this->belongsToMany(ReadingList::class)->withTimestamps();
+        return $this->belongsToMany(ReadingList::class)
+          ->withTimestamps()
+          ->orderBy('name');
     }
 
 }
