@@ -29,6 +29,8 @@ class AddCommentToPageAction extends Action
           $pageMessage,
         ]);
 
+        Apiato::call('Notification@CountUnreadNotificationsTask', [$user]);
+
         return $comment;
     }
 }
