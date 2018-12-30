@@ -6,6 +6,8 @@ use App\Containers\Authorization\Traits\AuthorizationTrait;
 use App\Containers\Payment\Contracts\ChargeableInterface;
 use App\Containers\Book\Models\Book;
 use App\Containers\Category\Models\Category;
+use App\Containers\ReadingList\Models\ReadingList;
+
 use App\Containers\Payment\Traits\ChargeableTrait;
 use App\Ship\Parents\Models\UserModel;
 use Illuminate\Notifications\Notifiable;
@@ -92,6 +94,11 @@ class User extends UserModel implements ChargeableInterface
     public function preferences()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function readingLists()
+    {
+        return $this->belongsToMany(ReadingList::class)->withTimestamps();
     }
 
 }
