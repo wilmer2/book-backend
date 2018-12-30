@@ -9,14 +9,14 @@ use Exception;
 
 class DeleteReadingListTask extends Task
 {
-
+  
     protected $repository;
 
     public function __construct(ReadingListRepository $repository)
     {
         $this->repository = $repository;
     }
-
+    
     public function run($id)
     {
         try {

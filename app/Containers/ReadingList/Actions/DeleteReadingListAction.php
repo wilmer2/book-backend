@@ -10,6 +10,13 @@ class DeleteReadingListAction extends Action
 {
     public function run(Request $request)
     {
-        return Apiato::call('ReadingList@DeleteReadingListTask', [$request->id]);
+        $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
+
+        $readingList = Apiato::call('ReadingList@FindReadingListByUserTask', [
+          $user, 
+          $request->id,
+        ]);
+
+        return Apiato::call('ReadingList@DeleteReadingListTask', [$readingList->id]);
     }
 }
