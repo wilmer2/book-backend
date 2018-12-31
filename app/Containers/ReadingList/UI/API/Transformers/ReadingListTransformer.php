@@ -3,6 +3,7 @@
 namespace App\Containers\ReadingList\UI\API\Transformers;
 
 use App\Containers\ReadingList\Models\ReadingList;
+use App\Containers\Book\UI\API\Transformers\BookTransformer;
 use App\Ship\Parents\Transformers\Transformer;
 
 class ReadingListTransformer extends Transformer
@@ -11,6 +12,7 @@ class ReadingListTransformer extends Transformer
      * @var  array
      */
     protected $defaultIncludes = [
+      'books',
 
     ];
 
@@ -22,18 +24,18 @@ class ReadingListTransformer extends Transformer
     ];
 
     /**
-     * @param ReadingList $readingList
+     * @param ReadingList $readinglist
      *
      * @return array
      */
-    public function transform(ReadingList $readingList)
+    public function transform(ReadingList $readinglist)
     {
         $response = [
             'object' => 'ReadingList',
-            'id' => $readingList->getHashedKey(),
-            'name' => $readingList->name,
-            'created_at' => $readingList->created_at,
-            'updated_at' => $readingList->updated_at,
+            'id' => $readinglist->getHashedKey(),
+            'name' => $readinglist->name,
+            'created_at' => $readinglist->created_at,
+            'updated_at' => $readinglist->updated_at,
 
         ];
 
@@ -43,5 +45,10 @@ class ReadingListTransformer extends Transformer
         ], $response);*/
 
         return $response;
+    }
+
+    public function includeBooks(ReadingList $readinglist)
+    {
+        return $this->collection($readinglist->books, new BookTransformer());
     }
 }
