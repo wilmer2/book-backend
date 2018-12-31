@@ -4,6 +4,8 @@ namespace App\Containers\User\UI\API\Transformers;
 
 use App\Containers\Authorization\UI\API\Transformers\RoleTransformer;
 use App\Containers\Category\UI\API\Transformers\CategoryTransformer;
+use App\Containers\ReadingList\UI\API\Transformers\ReadingListTransformer;
+
 
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Transformers\Transformer;
@@ -20,7 +22,7 @@ class UserPrivateProfileTransformer extends Transformer
      * @var  array
      */
     protected $availableIncludes = [
-        //'roles',
+        'readinglists',
     ];
 
     /**
@@ -71,6 +73,11 @@ class UserPrivateProfileTransformer extends Transformer
     public function includePreferences(User $user)
     {
         return $this->collection($user->preferences, new CategoryTransformer());
+    }
+
+    public function includeReadinglists(User $user)
+    {
+        return $this->collection($user->readingLists, new ReadingListTransformer());
     }
 
     /*public function includeRoles(User $user)
