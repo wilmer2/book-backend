@@ -37,6 +37,10 @@ class RegisterUserAction extends Action
             $data->name
         ]);
 
+        $readinglists = Apiato::call('ReadingList@GetAllMainReadingListsTask');
+        $readinglistsIds = (array) $readinglists->pluck('id');
+
+        Apiato::call('ReadingList@AddUserToReadingListsTask', [$user, $readinglistsIds]);
         Apiato::call('User@SyncPreferencesTask', [$user ,$data->categories_ids]);
 
         return $user;

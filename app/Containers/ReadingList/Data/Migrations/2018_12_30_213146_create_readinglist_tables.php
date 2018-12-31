@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class AddLikeCountColumnToPage extends Migration
+class CreateReadinglistTables extends Migration
 {
 
     /**
@@ -11,9 +11,12 @@ class AddLikeCountColumnToPage extends Migration
      */
     public function up()
     {
-        Schema::table('pages', function (Blueprint $table) {
+        Schema::create('reading_lists', function (Blueprint $table) {
 
-            $table->integer('like_count')->default(0);
+            $table->increments('id');
+            $table->string('name');
+
+            $table->timestamps();
             //$table->softDeletes();
 
         });
@@ -24,8 +27,6 @@ class AddLikeCountColumnToPage extends Migration
      */
     public function down()
     {
-        Schema::table('pages', function (Blueprint $table) {
-            $table->dropColumn('like_count');
-        });
+        Schema::drop('reading_lists');
     }
 }

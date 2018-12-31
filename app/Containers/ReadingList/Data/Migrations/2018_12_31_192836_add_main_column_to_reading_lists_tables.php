@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateNotificationTables extends Migration
+class AddMainColumnToReadingListsTables extends Migration
 {
 
     /**
@@ -11,13 +11,10 @@ class CreateNotificationTables extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::table('reading_lists', function (Blueprint $table) {
 
-            $table->increments('id');
-
-            $table->timestamps();
+            $table->boolean('main')->default(0);
             //$table->softDeletes();
-
         });
     }
 
@@ -26,6 +23,8 @@ class CreateNotificationTables extends Migration
      */
     public function down()
     {
-        Schema::drop('notifications');
+        Schema::table('reading_lists', function (Blueprint $table) {
+            $table->dropColumn('main');
+        });
     }
 }
