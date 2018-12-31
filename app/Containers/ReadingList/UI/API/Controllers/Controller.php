@@ -7,6 +7,7 @@ use App\Containers\ReadingList\UI\API\Requests\DeleteReadingListRequest;
 use App\Containers\ReadingList\UI\API\Requests\GetAllReadingListsRequest;
 use App\Containers\ReadingList\UI\API\Requests\FindReadingListByIdRequest;
 use App\Containers\ReadingList\UI\API\Requests\UpdateReadingListRequest;
+use App\Containers\ReadingList\UI\API\Requests\AddBookToReadingListRequest;
 use App\Containers\ReadingList\UI\API\Transformers\ReadingListTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use Apiato\Core\Foundation\Facades\Apiato;
@@ -71,5 +72,12 @@ class Controller extends ApiController
         Apiato::call('ReadingList@DeleteReadingListAction', [$request]);
 
         return $this->noContent();
+    }
+
+    public function addBookToReadingList(AddBookToReadingListRequest $request)
+    {
+        $readinglist = Apiato::call('ReadingList@AddBookToReadingListAction', [$request]);
+
+        return $this->transform($readinglist, ReadingListTransformer::class);
     }
 }

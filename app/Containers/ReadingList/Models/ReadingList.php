@@ -3,6 +3,7 @@
 namespace App\Containers\ReadingList\Models;
 
 use App\Ship\Parents\Models\Model;
+use App\Containers\Book\Models\Book;
 
 class ReadingList extends Model
 {
@@ -26,6 +27,11 @@ class ReadingList extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class)->withTimestamps();
+    }
 
     /**
      * A resource key to be used by the the JSON API Serializer responses.
