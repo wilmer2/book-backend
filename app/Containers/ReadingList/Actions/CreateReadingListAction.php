@@ -17,7 +17,7 @@ class CreateReadingListAction extends Action
         $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
         $readinglist = Apiato::call('ReadingList@CreateReadingListTask', [$data]);
 
-        $user->readingLists()->attach($readinglist->id);
+        Apiato::call('ReadingList@AddUserToReadingListsTask', [$user, [$readinglist->id]]);
 
         return $readinglist;
     }
