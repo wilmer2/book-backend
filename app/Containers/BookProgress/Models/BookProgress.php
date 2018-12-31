@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Containers\Read\Models;
+namespace App\Containers\BookProgress\Models;
 
 use App\Ship\Parents\Models\Model;
 
-class Read extends Model
+class BookProgress extends Model
 {
     protected $fillable = [
       'user_id',
-      'page_id',
+      'book_id',
     ];
 
     protected $attributes = [
@@ -31,5 +31,5 @@ class Read extends Model
     /**
      * A resource key to be used by the the JSON API Serializer responses.
      */
-    protected $resourceKey = 'reads';
+    protected $resourceKey = 'bookprogresses';
 }

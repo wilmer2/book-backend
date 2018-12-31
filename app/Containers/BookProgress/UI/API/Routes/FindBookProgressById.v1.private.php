@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @apiGroup           Read
- * @apiName            createRead
+ * @apiGroup           BookProgress
+ * @apiName            findBookProgressById
  *
- * @api                {POST} /v1/reads Endpoint title here..
+ * @api                {GET} /v1/bookprogresses/:id Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -20,9 +20,9 @@
  */
 
 /** @var Route $router */
-$router->post('reads', [
-    'as' => 'api_read_create_read',
-    'uses'  => 'Controller@createRead',
+$router->get('bookprogresses/{id}', [
+    'as' => 'api_bookprogress_find_book_progress_by_id',
+    'uses'  => 'Controller@findBookProgressById',
     'middleware' => [
       'auth:api',
     ],

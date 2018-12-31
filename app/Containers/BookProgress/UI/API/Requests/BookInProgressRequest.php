@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Containers\Read\UI\API\Requests;
+namespace App\Containers\BookProgress\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class CreateReadRequest.
+ * Class BookInProgressRequest.
  */
-class CreateReadRequest extends Request
+class BookInProgressRequest extends Request
 {
 
     /**
@@ -33,7 +33,8 @@ class CreateReadRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+        'book_id',
+        'page_id',
     ];
 
     /**
@@ -43,7 +44,8 @@ class CreateReadRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+        'book_id',
+        'page_id',
     ];
 
     /**
@@ -52,8 +54,8 @@ class CreateReadRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
-            // '{user-input}' => 'required|max:255',
+            'book_id' => 'required|exists:books,id',
+            'page_id' => 'required|exists:pages,id',
         ];
     }
 
