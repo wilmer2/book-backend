@@ -12,15 +12,15 @@ class AddBookToReadingListAction extends Action
     {
         $user = Apiato::call('Authentication@GetAuthenticatedUserTask');
 
-        $readingList = Apiato::call('ReadingList@FindReadingListByUserTask', [
+        $readinglist = Apiato::call('ReadingList@FindReadingListByUserTask', [
           $user, 
           $request->id,
         ]);
 
         $book = Apiato::call('Book@FindBookByIdTask', [$request->book_id]);
 
-        $readingList->books()->syncWithoutDetaching($book->id);
+        Apiato::call('ReadingList@AddBookToReadingListTask', [$readinglist, $book]);
 
-        return $readingList;
+        return $readinglist;
     }
 }
