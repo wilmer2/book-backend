@@ -14,6 +14,7 @@ class FindReadingListByUserTask extends Task
     {
         $readingList = $user->readingLists()
           ->where('reading_list_id', $readingListId)
+          ->where('main', 0)
           ->first();
 
         if (!$readingList) {
