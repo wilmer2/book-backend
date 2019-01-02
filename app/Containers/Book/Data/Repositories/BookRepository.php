@@ -15,7 +15,7 @@ class BookRepository extends Repository
      */
     protected $fieldSearchable = [
         'id' => '=',
-        // ...
+        'name' => 'like',
     ];
 
 }
