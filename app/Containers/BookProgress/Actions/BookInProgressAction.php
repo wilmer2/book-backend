@@ -41,6 +41,8 @@ class BookInProgressAction extends Action
           ],
         ]);
 
+        $bookProgress->increment('read_pages');
+
         Apiato::call('BookProgress@BookPercentageTask', [$book, $bookProgress]);
 
         return $bookProgress;

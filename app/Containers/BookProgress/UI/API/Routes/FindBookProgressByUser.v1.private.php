@@ -2,9 +2,9 @@
 
 /**
  * @apiGroup           BookProgress
- * @apiName            findBookProgressById
+ * @apiName            findBookProgressByUser
  *
- * @api                {GET} /v1/bookprogresses/:id Endpoint title here..
+ * @api                {GET} /v1/bookprogresses/by-book/:book_id Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -20,9 +20,9 @@
  */
 
 /** @var Route $router */
-$router->get('bookprogresses/{id}', [
-    'as' => 'api_bookprogress_find_book_progress_by_id',
-    'uses'  => 'Controller@findBookProgressById',
+$router->get('bookprogresses/by-book/{book_id}', [
+    'as' => 'api_bookprogress_find_book_progress_by_user',
+    'uses'  => 'Controller@findBookProgressByUser',
     'middleware' => [
       'auth:api',
     ],

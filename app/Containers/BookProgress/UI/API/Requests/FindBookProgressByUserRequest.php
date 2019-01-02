@@ -5,9 +5,9 @@ namespace App\Containers\BookProgress\UI\API\Requests;
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class FindBookProgressByIdRequest.
+ * Class FindBookProgressByUserRequest.
  */
-class FindBookProgressByIdRequest extends Request
+class FindBookProgressByUserRequest extends Request
 {
 
     /**
@@ -33,7 +33,7 @@ class FindBookProgressByIdRequest extends Request
      * @var  array
      */
     protected $decode = [
-        // 'id',
+        'book_id',
     ];
 
     /**
@@ -43,7 +43,7 @@ class FindBookProgressByIdRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+        'book_id',
     ];
 
     /**
@@ -52,8 +52,7 @@ class FindBookProgressByIdRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required',
-            // '{user-input}' => 'required|max:255',
+            'book_id' => 'required|exists:books,id',
         ];
     }
 

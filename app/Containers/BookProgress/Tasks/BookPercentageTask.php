@@ -13,7 +13,6 @@ class BookPercentageTask extends Task
     public function run(Book $book, BookProgress $bookProgress)
     {
         $totalPages = $book->pages()->count();
-        $bookProgress->read_pages++;
 
         $bookProgress->percentage = ($bookProgress->read_pages / $totalPages) * 100;
 
