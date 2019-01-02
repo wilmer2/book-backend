@@ -9,6 +9,7 @@ use App\Containers\User\UI\API\Requests\FindUserByIdRequest;
 use App\Containers\User\UI\API\Requests\ForgotPasswordRequest;
 use App\Containers\User\UI\API\Requests\GetAllUsersRequest;
 use App\Containers\User\UI\API\Requests\GetAuthenticatedUserRequest;
+use App\Containers\User\UI\API\Requests\GetAllClientsRequest;
 use App\Containers\User\UI\API\Requests\RegisterUserRequest;
 use App\Containers\User\UI\API\Requests\ResetPasswordRequest;
 use App\Containers\User\UI\API\Requests\UpdateUserRequest;
@@ -90,7 +91,7 @@ class Controller extends ApiController
      *
      * @return  mixed
      */
-    public function getAllClients(GetAllUsersRequest $request)
+    public function getAllClients(GetAllClientsRequest $request)
     {
         $users = Apiato::call('User@GetAllClientsAction');
 
