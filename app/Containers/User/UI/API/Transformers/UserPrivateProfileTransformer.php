@@ -30,7 +30,6 @@ class UserPrivateProfileTransformer extends Transformer
      */
     protected $defaultIncludes = [
         'preferences',
-        'readinglists',
     ];
 
     /**
@@ -74,11 +73,6 @@ class UserPrivateProfileTransformer extends Transformer
     public function includePreferences(User $user)
     {
         return $this->collection($user->preferences, new CategoryTransformer());
-    }
-
-    public function includeReadinglists(User $user)
-    {
-        return $this->collection($user->readingLists, new ReadingListTransformer());
     }
 
     /*public function includeRoles(User $user)
