@@ -26,20 +26,21 @@ class CategoryTransformer extends Transformer
      *
      * @return array
      */
-    public function transform(Category $entity)
+    public function transform(Category $category)
     {
         $response = [
             'object' => 'Category',
-            'id' => $entity->getHashedKey(),
-            'created_at' => $entity->created_at,
-            'updated_at' => $entity->updated_at,
+            'id' => $category->getHashedKey(),
+            'name' => $category->name,
+            'created_at' => $category->created_at,
+            'updated_at' => $category->updated_at,
 
         ];
 
-        $response = $this->ifAdmin([
+        /*$response = $this->ifAdmin([
             'real_id'    => $entity->id,
             // 'deleted_at' => $entity->deleted_at,
-        ], $response);
+        ], $response);*/
 
         return $response;
     }
