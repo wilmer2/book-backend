@@ -40,6 +40,7 @@ class BookTransformer extends Transformer
             'copyright' => $book->copyright,
             'category_id' => $this->encode($book->category_id),
             'image_url' => $book->file_url,
+            'like_count' => $book->like_count,
             'views' => (int) $book->views,
             'created_at' => $book->created_at,
             'updated_at' => $book->updated_at,
