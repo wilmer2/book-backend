@@ -12,6 +12,9 @@ class GetBooksToHomeAction extends Action
     {
         $books = Apiato::call('Book@GetTakeBooksTask', [], [
             'moreViews',
+            [
+                'moreLikes' => [$request->categories_ids]
+            ],
             'ordered',
             [
                 'search' => [$request->searchName]
