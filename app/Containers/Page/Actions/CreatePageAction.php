@@ -17,7 +17,8 @@ class CreatePageAction extends Action
           ->sanitizeInput([
             'book_id',
             'text',
-            'image_url'
+            'image_url',
+            'title',        
         ]);
 
         $page = Apiato::call('Page@CreatePageTask', [$data]);

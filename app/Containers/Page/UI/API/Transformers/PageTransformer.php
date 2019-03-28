@@ -34,6 +34,7 @@ class PageTransformer extends Transformer
             'object' => 'Page',
             'id' => $page->getHashedKey(),
             'text' => $page->text,
+            'title' => $page->title,
             'book_id' => $this->encode($page->book_id),
             'image_url' => $page->file_url,
             'created_at' => $page->created_at,

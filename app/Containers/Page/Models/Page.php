@@ -14,6 +14,7 @@ class Page extends Model
       'book_id',
       'text',
       'image_url',
+      'title',
     ];
 
     protected $attributes = [
