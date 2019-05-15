@@ -40,9 +40,9 @@ class GetTakeBooksTask extends Task
        }
     }
 
-    public function search($search)
+    public function search($searchName)
     {
-        return $this->repository->pushCriteria(new SearchCriteria($search));
+        return $this->repository->pushCriteria(new SearchCriteria($searchName));
     }
 
     public function preferences($categoriesIds)
