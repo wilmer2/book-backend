@@ -22,14 +22,13 @@ class UserPrivateProfileTransformer extends Transformer
      * @var  array
      */
     protected $availableIncludes = [
-        //
+        'preferences',
     ];
 
     /**
      * @var  array
      */
     protected $defaultIncludes = [
-        'preferences',
     ];
 
     /**
