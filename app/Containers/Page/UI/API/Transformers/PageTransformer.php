@@ -36,6 +36,7 @@ class PageTransformer extends Transformer
             'text' => $page->text,
             'title' => $page->title,
             'book_id' => $this->encode($page->book_id),
+            'like_count' => $page->like_count,
             'image_url' => $page->file_url,
             'created_at' => $page->created_at,
             'updated_at' => $page->updated_at,
