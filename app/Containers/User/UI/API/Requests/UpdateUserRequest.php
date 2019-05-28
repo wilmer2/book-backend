@@ -50,7 +50,7 @@ class UpdateUserRequest extends Request
         return [
             'email'    => 'email|unique:users,email,'.$this->id,
             'id'       => 'required|exists:users,id',
-            'password' => 'min:6|max:40',
+            'password' => 'max:40',
             'name'     => 'min:2|max:50',
             'categories_ids' => 'required',
             'categories_ids.*' => 'exists:categories,id',
