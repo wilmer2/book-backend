@@ -12,8 +12,8 @@ class AddLikeCountColumnToBook extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-
             $table->integer('like_count')->default(0);
+            //$table->softDeletes();
             //$table->softDeletes();
 
         });

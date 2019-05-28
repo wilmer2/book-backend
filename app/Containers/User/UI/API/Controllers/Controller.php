@@ -59,7 +59,13 @@ class Controller extends ApiController
     {   
         $user = Apiato::call('User@UpdateUserAction', [new DataTransporter($request)]);
 
-        return $this->transform($user, UserTransformer::class);
+         return $this->transform(
+          $user, 
+          UserPrivateProfileTransformer::class, 
+          [], 
+          [], 
+          \Config::get('user-container.authenticated')
+        );
     }
 
     /**
@@ -131,7 +137,13 @@ class Controller extends ApiController
     {
         $user = Apiato::call('User@GetAuthenticatedUserAction');
 
-        return $this->transform($user, UserPrivateProfileTransformer::class);
+        return $this->transform(
+          $user, 
+          UserPrivateProfileTransformer::class, 
+          [], 
+          [], 
+          \Config::get('user-container.authenticated')
+        );
     }
 
     /**

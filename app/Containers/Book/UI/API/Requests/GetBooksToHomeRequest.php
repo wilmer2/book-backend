@@ -33,7 +33,7 @@ class GetBooksToHomeRequest extends Request
      * @var  array
      */
     protected $decode = [
-        'categories_ids.*',
+        'categoriesIds.*',
     ];
 
     /**

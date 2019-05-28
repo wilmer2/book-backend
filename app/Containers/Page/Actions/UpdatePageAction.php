@@ -26,6 +26,7 @@ class UpdatePageAction extends Action
           ->sanitizeInput([
             'text',
             'image_url',
+            'title',
         ]);
 
         $pageData = array_filter($data);

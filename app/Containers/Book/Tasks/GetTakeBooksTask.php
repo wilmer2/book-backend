@@ -7,6 +7,8 @@ use App\Ship\Criterias\Eloquent\OrderByCreationDateDescendingCriteria;
 use App\Containers\Book\Data\Criterias\OrderByViewDescendingCriteria;
 use App\Containers\Book\Data\Criterias\SearchCriteria;
 use App\Containers\Book\Data\Criterias\SearchByCategoriesIdCriteria;
+use App\Containers\Book\Data\Criterias\OrderByLikesDescendingCriteria;
+
 use App\Containers\Book\Data\Criterias\TakeLimitCriteria;
 
 use App\Ship\Parents\Tasks\Task;
@@ -23,31 +25,33 @@ class GetTakeBooksTask extends Task
 
     public function run()
     {
-        return $this->repository
-          ->pushCriteria(new TakeLimitCriteria)
-          ->get();
-    }
-
-    public function ordered()
-    {
-        return $this->repository
-          ->pushCriteria(new OrderByCreationDateDescendingCriteria);
+        return $this->repository->pushCriteria(new TakeLimitCriteria)->get();
     }
 
     public function moreViews()
     {
-        return $this->repository
-          ->pushCriteria(new OrderByViewDescendingCriteria);
+        return $this->repository->pushCriteria(new OrderByViewDescendingCriteria);
     }
 
-    public function search($search)
+    public function moreLikes($categoriesIds)
     {
-        return $this->repository->pushCriteria(new SearchCriteria($search));
+       if ($categoriesIds) {
+        return $this->repository->pushCriteria(new OrderByLikesDescendingCriteria);
+       }
+    }
+
+    public function search($searchName)
+    {
+        return $this->repository->pushCriteria(new SearchCriteria($searchName));
     }
 
     public function preferences($categoriesIds)
     {
-        return $this->repository
-          ->pushCriteria(new SearchByCategoriesIdCriteria($categoriesIds));
+        return $this->repository->pushCriteria(new SearchByCategoriesIdCriteria($categoriesIds));
+    }
+
+    public function ordered()
+    {
+        return $this->repository->pushCriteria(new OrderByCreationDateDescendingCriteria);
     }
 }

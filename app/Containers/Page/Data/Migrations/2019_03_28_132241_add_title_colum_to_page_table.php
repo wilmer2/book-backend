@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class AddLikeCountColumnToPage extends Migration
+class AddTitleColumToPageTable extends Migration
 {
 
     /**
@@ -12,10 +12,7 @@ class AddLikeCountColumnToPage extends Migration
     public function up()
     {
         Schema::table('pages', function (Blueprint $table) {
-
-            $table->integer('like_count')->default(0);
-            //$table->softDeletes();
-
+            $table->string('title')->nullable();
         });
     }
 
@@ -25,7 +22,7 @@ class AddLikeCountColumnToPage extends Migration
     public function down()
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->dropColumn('like_count');
+            $table->dropColumn('title');
         });
     }
 }

@@ -23,7 +23,4 @@
 $router->get('books/{id}', [
     'as' => 'api_book_find_book_by_id',
     'uses'  => 'Controller@findBookById',
-    'middleware' => [
-      'auth:api',
-    ],
 ]);

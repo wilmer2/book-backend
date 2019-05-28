@@ -54,6 +54,7 @@ class CreatePageRequest extends Request
         return [
             'book_id' => 'required|exists:books,id',
             'text' => 'required',
+            'title' => 'required',
         ];
     }
 

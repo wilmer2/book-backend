@@ -54,7 +54,8 @@ class UpdatePageRequest extends Request
         return [
             'id' => 'required|exists:pages,id',
             'text' => 'required',
-        ];
+            'title' => 'required',
+          ];
     }
 
     /**
