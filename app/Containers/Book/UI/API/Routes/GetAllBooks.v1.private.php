@@ -23,7 +23,4 @@
 $router->get('books', [
     'as' => 'api_book_get_all_books',
     'uses'  => 'Controller@getAllBooks',
-    'middleware' => [
-      'auth:api',
-    ],
 ]);
